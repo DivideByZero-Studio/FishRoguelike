@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     {
         _transform = GetComponent<Transform>();
         _characterController = GetComponent<CharacterController>();
+        enabled = false;
     }
 
     private void Update()

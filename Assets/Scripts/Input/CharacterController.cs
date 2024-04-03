@@ -9,6 +9,7 @@ public class CharacterController : MonoBehaviour
     private PlayerInput _input;
     public event Action OnPrimaryAttack;
     public event Action OnSecondaryAttack;
+    public event Action OnDash;
 
     private void Awake()
     {
@@ -32,15 +33,22 @@ public class CharacterController : MonoBehaviour
         OnSecondaryAttack?.Invoke();
     }
 
+    private void Dash_performed(InputAction.CallbackContext context)
+    {
+        OnDash?.Invoke();
+    }
+
     private void OnEnable()
     {
         _input.Player.PrimaryAttack.performed += Primary_attack_performed;
         _input.Player.SecondaryAttack.performed += Secondary_attack_performed;
+        _input.Player.Dash.performed += Dash_performed;
     }
 
     private void OnDisable()
     {
         _input.Player.PrimaryAttack.performed -= Primary_attack_performed;
         _input.Player.SecondaryAttack.performed -= Secondary_attack_performed;
+        _input.Player.Dash.performed -= Dash_performed;
     }
 }
