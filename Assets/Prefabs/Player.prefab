@@ -128,6 +128,8 @@ GameObject:
   - component: {fileID: 8264694548582944591}
   - component: {fileID: 2948450617016919073}
   - component: {fileID: 763824151426914544}
+  - component: {fileID: 7181101724324049101}
+  - component: {fileID: 7407714202833196945}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -188,3 +190,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17fdd962de29bc146a02947ee1098b1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _cooldown: 2
+  _attackTrigger: {fileID: 0}
+--- !u!114 &7181101724324049101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7128212249782748117}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe5c90f2783d8ae4ca59ea0763888a71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7407714202833196945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7128212249782748117}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58b4a1021843e7c45a3703db51fe44ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _timeToDash: 0.5

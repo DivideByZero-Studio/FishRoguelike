@@ -13,6 +13,7 @@ public class PlayerAttack : MonoBehaviour
     {
         _characterController = GetComponent<CharacterController>();
         _timer = new Timer(_cooldown);
+        enabled = false;
     }
 
     private void Update()
