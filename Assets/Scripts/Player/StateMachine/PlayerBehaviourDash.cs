@@ -1,6 +1,7 @@
 public class PlayerBehaviourDash : Behaviour
 {
     private PlayerDash _dash;
+
     public PlayerBehaviourDash(PlayerDash dash)
     {
         _dash = dash;
@@ -9,7 +10,7 @@ public class PlayerBehaviourDash : Behaviour
     public override void Enter()
     {
         _dash.enabled = true;
-        _dash.Dash();
+        _dash.StartDash();
     }
 
     public override void Exit()

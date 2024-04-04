@@ -1,29 +1,40 @@
 using UnityEngine;
 
-[RequireComponent(typeof(CharacterController))]
+[RequireComponent(typeof(CharacterController), typeof(Rigidbody2D))]
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float _movementSpeed;
 
     private CharacterController _characterController;
-    private Transform _transform;
+    private Rigidbody2D _rigidbody;
+
+    private Vector2 _moveDirection;
 
     private void Awake()
     {
-        _transform = GetComponent<Transform>();
+        _rigidbody = GetComponent<Rigidbody2D>();
         _characterController = GetComponent<CharacterController>();
         enabled = false;
     }
 
     private void Update()
     {
+        ReadMoveVector();
+    }
+
+    private void FixedUpdate()
+    {
         Move();
+    }
+
+    private void ReadMoveVector()
+    {
+        _moveDirection = _characterController.GetMovementNormalizedVector();
     }
 
     private void Move()
     {
-        Vector2 moveDirection = _characterController.GetMovementNormalizedVector();
-        Vector3 moveVector = new Vector3(_transform.position.x + moveDirection.x, _transform.position.y + moveDirection.y, _transform.position.z);
-        _transform.position = Vector3.MoveTowards(_transform.position, moveVector, _movementSpeed * Time.deltaTime);
+        var newPosition = _rigidbody.position + _movementSpeed * Time.fixedDeltaTime * _moveDirection;
+        _rigidbody.MovePosition(newPosition);
     }
 }
