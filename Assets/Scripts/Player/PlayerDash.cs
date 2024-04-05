@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-[RequireComponent(typeof(CharacterController), typeof(Rigidbody2D))]
+[RequireComponent(typeof(PlayerController), typeof(Rigidbody2D))]
 public class PlayerDash : MonoBehaviour
 {
     [SerializeField] private float _dashCooldown;
@@ -10,7 +10,7 @@ public class PlayerDash : MonoBehaviour
     [SerializeField] private float _dashDistance;
     private Vector2 _dashDirection;
 
-    private CharacterController _characterController;
+    private PlayerController _characterController;
     private Rigidbody2D _rigidbody;
     private WaitForFixedUpdate _waitForFixedUpdate;
 
@@ -20,7 +20,7 @@ public class PlayerDash : MonoBehaviour
 
     private void Awake()
     {
-        _characterController = GetComponent<CharacterController>();
+        _characterController = GetComponent<PlayerController>();
         _rigidbody = GetComponent<Rigidbody2D>();
 
         _waitForFixedUpdate = new WaitForFixedUpdate();

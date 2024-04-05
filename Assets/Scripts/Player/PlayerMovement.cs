@@ -1,11 +1,11 @@
 using UnityEngine;
 
-[RequireComponent(typeof(CharacterController), typeof(Rigidbody2D))]
+[RequireComponent(typeof(PlayerController), typeof(Rigidbody2D))]
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float _movementSpeed;
 
-    private CharacterController _characterController;
+    private PlayerController _characterController;
     private Rigidbody2D _rigidbody;
 
     private Vector2 _moveDirection;
@@ -13,7 +13,7 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
-        _characterController = GetComponent<CharacterController>();
+        _characterController = GetComponent<PlayerController>();
         enabled = false;
     }
 
