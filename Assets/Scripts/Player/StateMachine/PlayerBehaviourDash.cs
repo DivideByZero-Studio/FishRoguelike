@@ -10,11 +10,6 @@ public class PlayerBehaviourDash : Behaviour
     public override void Enter()
     {
         _dash.enabled = true;
-        _dash.StartDash();
-    }
-
-    public override void Exit()
-    {
-        _dash.enabled = false;
+        _dash.Dash();
     }
 }
