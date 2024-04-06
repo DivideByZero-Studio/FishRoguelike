@@ -5,14 +5,14 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerMovement), typeof(PlayerAttack), typeof(PlayerDash))]
 public class PlayerStateMachine : StateMachine
 {
-    private CharacterController _characterController;
+    private PlayerController _characterController;
     private PlayerMovement _movement;
     private PlayerAttack _attack;
     private PlayerDash _dash;
 
     private void Awake()
     {
-        _characterController = GetComponent<CharacterController>();
+        _characterController = GetComponent<PlayerController>();
         _movement = GetComponent<PlayerMovement>();
         _attack = GetComponent<PlayerAttack>();
         _dash = GetComponent<PlayerDash>();

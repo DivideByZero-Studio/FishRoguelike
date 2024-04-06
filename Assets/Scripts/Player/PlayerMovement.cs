@@ -1,29 +1,40 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
-[RequireComponent(typeof(CharacterController))]
+[RequireComponent(typeof(PlayerController), typeof(Rigidbody2D))]
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float _movementSpeed;
 
-    private CharacterController _characterController;
-    private Transform _transform;
+    public Vector2 LastMoveDirection { get; private set; }
+
+    private PlayerController _characterController;
+    private Rigidbody2D _rigidbody;
+
+    private Vector2 _moveDirection;
 
     private void Awake()
     {
-        _transform = GetComponent<Transform>();
-        _characterController = GetComponent<CharacterController>();
+        _rigidbody = GetComponent<Rigidbody2D>();
+        _characterController = GetComponent<PlayerController>();
         enabled = false;
     }
 
     private void Update()
+    {
+        _moveDirection = _characterController.GetMovementNormalizedVector();
+        if (_moveDirection != Vector2.zero)
+            LastMoveDirection = _moveDirection;
+    }
+
+    private void FixedUpdate()
     {
         Move();
     }
 
     private void Move()
     {
-        Vector2 moveDirection = _characterController.GetMovementNormalizedVector();
-        Vector3 moveVector = new Vector3(_transform.position.x + moveDirection.x, _transform.position.y + moveDirection.y, _transform.position.z);
-        _transform.position = Vector3.MoveTowards(_transform.position, moveVector, _movementSpeed * Time.deltaTime);
+        var newPosition = _rigidbody.position + _movementSpeed * Time.fixedDeltaTime * _moveDirection;
+        _rigidbody.MovePosition(newPosition);
     }
 }

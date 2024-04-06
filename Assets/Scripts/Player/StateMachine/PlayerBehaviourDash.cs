@@ -1,6 +1,7 @@
 public class PlayerBehaviourDash : Behaviour
 {
     private PlayerDash _dash;
+
     public PlayerBehaviourDash(PlayerDash dash)
     {
         _dash = dash;
@@ -10,10 +11,5 @@ public class PlayerBehaviourDash : Behaviour
     {
         _dash.enabled = true;
         _dash.Dash();
-    }
-
-    public override void Exit()
-    {
-        _dash.enabled = false;
     }
 }

@@ -1,19 +1,36 @@
+using System;
+using System.Collections;
 using UnityEngine;
 
+[RequireComponent(typeof(PlayerMovement))]
 public class PlayerAttack : MonoBehaviour
 {
-    [SerializeField] private float _cooldown;
-    [SerializeField] private BoxCollider2D _attackTrigger;
+    [Header("Attack Colliders")]
+    [SerializeField] private PlayerAttackCollider _primaryAttackCollider;
+    [SerializeField] private PlayerAttackCollider _secondaryAttackCollider;
 
-    private CharacterController _characterController;
+    [Header("Specs")]
+    [SerializeField] private int _primaryAttackDamage;
+    [SerializeField] private int _secondaryAttackDamage;
+    [SerializeField] private float _attackCooldown;
 
+    private Vector2 _lastMoveDirection;
+
+    private PlayerController _characterController;
+    private PlayerMovement _playerMovement;
     private Timer _timer;
+
+    public event Action OnPrimaryAttack;
+    public event Action OnSecondaryAttack;
 
     private void Awake()
     {
-        _characterController = GetComponent<CharacterController>();
-        _timer = new Timer(_cooldown);
-        enabled = false;
+        _playerMovement = GetComponent<PlayerMovement>();
+        _characterController = GetComponent<PlayerController>();
+
+        _timer = new Timer(_attackCooldown);
+
+        _lastMoveDirection = Vector2.zero;
     }
 
     private void Update()
@@ -21,13 +38,31 @@ public class PlayerAttack : MonoBehaviour
         _timer.DecreaseTime();
     }
 
+    private void OnEnable()
+    {
+        _characterController.OnPrimaryAttack += PrimaryAttack;
+        _primaryAttackCollider.DamageableEntered += PrimaryAttackGiveDamage;
+
+        _characterController.OnSecondaryAttack += SecondaryAttack;
+        _secondaryAttackCollider.DamageableEntered += SecondaryAttackGiveDamage;
+    }
+    private void OnDisable()
+    {
+        _characterController.OnPrimaryAttack -= PrimaryAttack;
+        _primaryAttackCollider.DamageableEntered -= PrimaryAttackGiveDamage;
+
+        _characterController.OnSecondaryAttack -= SecondaryAttack;
+        _secondaryAttackCollider.DamageableEntered -= SecondaryAttackGiveDamage;
+    }
+
     private void PrimaryAttack()
     {
         if (_timer.IsReady == false)
             return;
 
-        Debug.Log("Primary Attacked");
         _timer.Reset();
+        OnPrimaryAttack?.Invoke();
+        StartCoroutine(AttackRoutine(_primaryAttackCollider));
     }
 
     private void SecondaryAttack()
@@ -35,18 +70,32 @@ public class PlayerAttack : MonoBehaviour
         if (_timer.IsReady == false)
             return;
 
-        Debug.Log("Secondary Attacked");
         _timer.Reset();
+        OnSecondaryAttack?.Invoke();
+        StartCoroutine(AttackRoutine(_secondaryAttackCollider));
     }
 
-    private void OnEnable()
+    private void PrimaryAttackGiveDamage(IDamageable damageable)
     {
-        _characterController.OnPrimaryAttack += PrimaryAttack;
-        _characterController.OnSecondaryAttack += SecondaryAttack;
+        damageable.TakeDamage(_primaryAttackDamage);
     }
-    private void OnDisable()
+
+    private void SecondaryAttackGiveDamage(IDamageable damageable)
     {
-        _characterController.OnPrimaryAttack -= PrimaryAttack;
-        _characterController.OnSecondaryAttack -= SecondaryAttack;
+        damageable.TakeDamage(_secondaryAttackDamage);
+    }
+
+    private IEnumerator AttackRoutine(PlayerAttackCollider attackCollider)
+    {
+        SetColliderRotation(attackCollider);
+
+        attackCollider.Enable();
+        yield return new WaitForSeconds(0.5f);
+        attackCollider.Disable();
+    }
+
+    private void SetColliderRotation(PlayerAttackCollider attackCollider)
+    {
+        attackCollider.SetRotation(_playerMovement.LastMoveDirection);
     }
 }
