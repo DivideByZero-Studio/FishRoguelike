@@ -1,9 +1,12 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(PlayerController), typeof(Rigidbody2D))]
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float _movementSpeed;
+
+    public Vector2 LastMoveDirection { get; private set; }
 
     private PlayerController _characterController;
     private Rigidbody2D _rigidbody;
@@ -19,17 +22,14 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        ReadMoveVector();
+        _moveDirection = _characterController.GetMovementNormalizedVector();
+        if (_moveDirection != Vector2.zero)
+            LastMoveDirection = _moveDirection;
     }
 
     private void FixedUpdate()
     {
         Move();
-    }
-
-    private void ReadMoveVector()
-    {
-        _moveDirection = _characterController.GetMovementNormalizedVector();
     }
 
     private void Move()

@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
+[RequireComponent(typeof(PlayerMovement))]
 public class PlayerAttack : MonoBehaviour
 {
     [Header("Attack Colliders")]
@@ -15,10 +17,15 @@ public class PlayerAttack : MonoBehaviour
     private Vector2 _lastMoveDirection;
 
     private PlayerController _characterController;
+    private PlayerMovement _playerMovement;
     private Timer _timer;
+
+    public event Action OnPrimaryAttack;
+    public event Action OnSecondaryAttack;
 
     private void Awake()
     {
+        _playerMovement = GetComponent<PlayerMovement>();
         _characterController = GetComponent<PlayerController>();
 
         _timer = new Timer(_attackCooldown);
@@ -28,10 +35,6 @@ public class PlayerAttack : MonoBehaviour
 
     private void Update()
     {
-        var moveDirection = _characterController.GetMovementNormalizedVector();
-        if (moveDirection != Vector2.zero)
-            _lastMoveDirection = moveDirection;
-
         _timer.DecreaseTime();
     }
 
@@ -57,6 +60,8 @@ public class PlayerAttack : MonoBehaviour
         if (_timer.IsReady == false)
             return;
 
+        _timer.Reset();
+        OnPrimaryAttack?.Invoke();
         StartCoroutine(AttackRoutine(_primaryAttackCollider));
     }
 
@@ -65,6 +70,8 @@ public class PlayerAttack : MonoBehaviour
         if (_timer.IsReady == false)
             return;
 
+        _timer.Reset();
+        OnSecondaryAttack?.Invoke();
         StartCoroutine(AttackRoutine(_secondaryAttackCollider));
     }
 
@@ -85,12 +92,10 @@ public class PlayerAttack : MonoBehaviour
         attackCollider.Enable();
         yield return new WaitForSeconds(0.5f);
         attackCollider.Disable();
-
-        _timer.Reset();
     }
 
     private void SetColliderRotation(PlayerAttackCollider attackCollider)
     {
-        attackCollider.SetRotation(_lastMoveDirection);
+        attackCollider.SetRotation(_playerMovement.LastMoveDirection);
     }
 }
