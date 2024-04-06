@@ -8,36 +8,39 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private List<SpawnPoint> _spawnPoints;
 
     private List<GameObject> _spawnedObjects;
+    private Transform _playerTransform;
 
     private void Awake()
     {
         _spawnedObjects = new List<GameObject>();
     }
 
-    private void Spawn(SpawnPoint spawnPoint)
+    private GameObject Spawn(SpawnPoint spawnPoint)
     {
         Type type = spawnPoint.Type;
-        _spawnedObjects.Add(ObjectPool.Instance.SmartGetObject(type));
-        
+        var obj = ObjectPool.Instance.SmartGetObject(type);
+        if (obj.TryGetComponent<IPoolObject>(out var poolObj))
+        {
+            poolObj.Init(spawnPoint.Position);
+        }
+        _spawnedObjects.Add(obj);
+        return obj;
     }
 
-    private void Update()
+    private void SpawnEnemyCluster(Transform playerTransform)
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        foreach (var spawnPoint in _spawnPoints)
         {
-            Spawn(_spawnPoints[0]);
-        }
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            DespawnAll();
+            var obj = Spawn(spawnPoint);
+            if (obj.TryGetComponent<Enemy>(out var enemy))
+            {
+                enemy.SetPlayerTransform(playerTransform);
+            }
         }
     }
 
-    private void DespawnAll()
+    private void OnEnable()
     {
-        foreach (GameObject obj in _spawnedObjects)
-        {
-            ObjectPool.Instance.DeactivateObject(obj);
-        }
+        _trigger.OnEntered += SpawnEnemyCluster;
     }
 }
