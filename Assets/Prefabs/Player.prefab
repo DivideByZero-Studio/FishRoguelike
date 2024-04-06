@@ -109,7 +109,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: -1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4569397630637260954}
@@ -127,6 +127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerAttack: {fileID: 763824151426914544}
+  _playerMovement: {fileID: 8264694548582944591}
 --- !u!95 &925224302591208009
 Animator:
   serializedVersion: 5
@@ -385,7 +386,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.13200855, y: -0.35363263}
+  m_Offset: {x: 0, y: -0.35363263}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -414,7 +415,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
-  m_Material: {fileID: 6200000, guid: d94a97a0a6e5cbb4da2f007c4adcb2de, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -480,8 +481,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _dashCooldown: 1
-  _dashDurability: 0.2
-  _dashDistance: 2
+  _dashDurability: 0.25
+  _dashDistance: 1.6
 --- !u!114 &4328446774679156671
 MonoBehaviour:
   m_ObjectHideFlags: 0
