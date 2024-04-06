@@ -1,8 +1,6 @@
+using UnityEngine;
+
 public interface IPoolObject
 {
-    void Spawn();
-
-    void Despawn();
-
-    void Prepare();
+    void Init(Vector3 position);
 }
