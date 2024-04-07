@@ -10693,7 +10693,6 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
---- !u!1001 &1945941816
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -10814,10 +10813,6 @@ MonoBehaviour:
 --- !u!4 &1984182709
 Transform:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1984182707}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -10}
@@ -10865,7 +10860,8 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1760921893}
-  - {fileID: 1984182709}
+  - {fileID: 8692900418605636720}
+  - {fileID: 1551828929}
   - {fileID: 1753843093}
   - {fileID: 259551284}
   - {fileID: 1551828929}

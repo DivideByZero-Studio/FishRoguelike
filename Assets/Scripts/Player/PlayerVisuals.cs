@@ -5,6 +5,7 @@ public class PlayerVisuals : MonoBehaviour
 {
     [SerializeField] private PlayerAttack _playerAttack;
     [SerializeField] private PlayerMovement _playerMovement;
+
     private Animator _animator;
 
     private const string movementHorizontal = nameof(movementHorizontal);
