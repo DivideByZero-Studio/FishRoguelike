@@ -47,7 +47,6 @@ public abstract class StateMachine : MonoBehaviour
 
     protected virtual void Subscribe()
     {
-        Debug.Log("Suscribed");
         return;
     }
 

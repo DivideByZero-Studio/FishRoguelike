@@ -34,7 +34,6 @@ public class EnemyIdle : MonoBehaviour
     private IEnumerator IdleRoutine()
     {
         yield return new WaitForSeconds(_randomDuration);
-        Debug.Log("q");
         OnEnded?.Invoke();
     }
 }

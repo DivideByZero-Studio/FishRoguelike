@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MeleeEnemyStateMachine : EnemyStateMachine
@@ -8,11 +7,13 @@ public class MeleeEnemyStateMachine : EnemyStateMachine
 
     [SerializeField] private EnemyAttackRange _attackRange;
 
-    private MeleeEnemyAttack _attack;
+    private EnemyAttack _attack;
     private EnemyFlee _flee;
     private MeleeEnemyApproach _approach;
     private EnemyIdle _idle;
     private EnemyWalk _walking;
+    private EnemyDeath _death;
+    private Health _health;
 
     private System.Random _random;
 
@@ -24,6 +25,8 @@ public class MeleeEnemyStateMachine : EnemyStateMachine
         _approach = GetComponent<MeleeEnemyApproach>();
         _idle = GetComponent<EnemyIdle>();
         _walking = GetComponent<EnemyWalk>();
+        _death = GetComponent<EnemyDeath>();
+        _health = GetComponent<Health>();
 
         _random = new System.Random();
     }
@@ -36,6 +39,7 @@ public class MeleeEnemyStateMachine : EnemyStateMachine
         _behavioursMap[typeof(MeleeEnemyBehaviourAttack)] = new MeleeEnemyBehaviourAttack(_attack, _playerTransform);
         _behavioursMap[typeof(MeleeEnemyBehaviourIdle)] = new MeleeEnemyBehaviourIdle(_idle);
         _behavioursMap[typeof(MeleeEnemyBehaviourWalk)] = new MeleeEnemyBehaviourWalk(_walking);
+        _behavioursMap[typeof(EnemyDeadBehaviour)] = new EnemyDeadBehaviour(_death);
     }
 
     protected override void SetBehaviourByDefault()
@@ -46,6 +50,8 @@ public class MeleeEnemyStateMachine : EnemyStateMachine
 
     protected virtual void SetRandomMoveBehaviour()
     {
+        if (_currentBehaviour == GetBehaviour<EnemyDeadBehaviour>()) return;
+
         Behaviour behaviour;
 
         double chance = _random.NextDouble();
@@ -63,18 +69,21 @@ public class MeleeEnemyStateMachine : EnemyStateMachine
 
     private void SetBehaviourIdle()
     {
+        if (_currentBehaviour == GetBehaviour<EnemyDeadBehaviour>()) return;
         var behaviour = GetBehaviour<MeleeEnemyBehaviourIdle>();
         SetBehaviour(behaviour);
     }
 
     private void SetBehaviourAttack()
     {
+        if (_currentBehaviour == GetBehaviour<EnemyDeadBehaviour>()) return;
         var behaviour = GetBehaviour<MeleeEnemyBehaviourAttack>();
         SetBehaviour(behaviour);
     }
 
     private void TrySetBehaviourApproach()
     {
+        if (_currentBehaviour == GetBehaviour<EnemyDeadBehaviour>()) return;
         if (_currentBehaviour != GetBehaviour<MeleeEnemyBehaviourFlee>())
         {
             var behaviour = GetBehaviour<MeleeEnemyBehaviourApproach>();
@@ -84,6 +93,7 @@ public class MeleeEnemyStateMachine : EnemyStateMachine
 
     private void TrySetBehaviourAttackAgain()
     {
+        if (_currentBehaviour == GetBehaviour<EnemyDeadBehaviour>()) return;
         double chance = _random.NextDouble();
 
         if (chance >= _attackAgainChance)
@@ -91,6 +101,13 @@ public class MeleeEnemyStateMachine : EnemyStateMachine
             var behaviour = GetBehaviour<MeleeEnemyBehaviourFlee>();
             SetBehaviour(behaviour);
         }
+    }
+
+    private void SetBehaviourDead()
+    {
+        if (_currentBehaviour == GetBehaviour<EnemyDeadBehaviour>()) return;
+        var behaviour = GetBehaviour<EnemyDeadBehaviour>();
+        SetBehaviour(behaviour);
     }
 
     protected override void Subscribe()
@@ -106,6 +123,8 @@ public class MeleeEnemyStateMachine : EnemyStateMachine
         _attack.OnAttacked += TrySetBehaviourAttackAgain;
 
         _attackRange.OnEntered += SetBehaviourAttack;
+
+        _health.OnDead += SetBehaviourDead;
     }
 
     protected override void Unsubscribe()
@@ -121,5 +140,7 @@ public class MeleeEnemyStateMachine : EnemyStateMachine
         _attack.OnAttacked -= TrySetBehaviourAttackAgain;
 
         _attackRange.OnEntered -= SetBehaviourAttack;
+
+        _health.OnDead -= SetBehaviourDead;
     }
 }
