@@ -14,5 +14,6 @@ public abstract class EnemyStateMachine : StateMachine
     {
         _playerTransform = _enemy.GetPlayerTransform();
         InitBehaviours();
+        SetBehaviourByDefault();
     }
 }
