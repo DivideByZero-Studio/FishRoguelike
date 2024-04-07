@@ -4,11 +4,6 @@ using UnityEngine;
 
 public class MeleeEnemyAttack : EnemyAttack
 {
-    public event Action OnAttacked;
-    public event Action OnLeft;
-
-    public static readonly float AttackRange = 1.5f;
-
     [SerializeField] private AttackCollider _attackCollider;
     [SerializeField] private int _damage;
     [SerializeField] private float _cooldown;
@@ -45,25 +40,25 @@ public class MeleeEnemyAttack : EnemyAttack
 
         if (_attackTimer.IsReady)
         {
-            Debug.Log("Attack");
             StartCoroutine(AttackRoutine());
             _attackTimer.Reset();
         }
 
         if ((_transform.position - _playerTransform.position).magnitude > AttackRange)
         {
-            OnLeft?.Invoke();
+            InvokeOnLeft();
         } 
     }
 
     private IEnumerator AttackRoutine()
     {
         SetColliderRotation();
+        yield return new WaitForSeconds(_attackAnimationDuration / 2);
         _attackCollider.Enable();
         yield return new WaitForSeconds(_colliderLiveTime);
         _attackCollider.Disable();
-        yield return new WaitForSeconds(_attackAnimationDuration);
-        OnAttacked?.Invoke();
+        yield return new WaitForSeconds(_attackAnimationDuration / 2);
+        InvokeOnAttacked();
     }
 
     private void SetColliderRotation()

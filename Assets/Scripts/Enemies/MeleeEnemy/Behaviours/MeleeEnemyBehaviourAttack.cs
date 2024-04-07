@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class MeleeEnemyBehaviourAttack : Behaviour
 {
-    private MeleeEnemyAttack _attack;
+    private EnemyAttack _attack;
     private Transform _playerTransform;
-    public MeleeEnemyBehaviourAttack(MeleeEnemyAttack attack, Transform playerTransform)
+    public MeleeEnemyBehaviourAttack(EnemyAttack attack, Transform playerTransform)
     {
         _attack = attack;
         _playerTransform = playerTransform;

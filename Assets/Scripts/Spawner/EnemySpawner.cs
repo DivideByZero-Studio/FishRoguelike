@@ -23,6 +23,12 @@ public class EnemySpawner : MonoBehaviour
         {
             poolObj.Init(spawnPoint.Position);
         }
+
+        if (obj.TryGetComponent<Health>(out var healthObj))
+        {
+            healthObj.SetHealthOnMaxValue();
+        }
+
         _spawnedObjects.Add(obj);
         return obj;
     }
