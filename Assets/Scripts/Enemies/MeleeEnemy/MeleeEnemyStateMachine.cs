@@ -5,6 +5,7 @@ public class MeleeEnemyStateMachine : EnemyStateMachine
 {
     [SerializeField, Range(0, 1)] private float _approachChance;
     [SerializeField, Range(0, 1)] private float _attackAgainChance;
+
     [SerializeField] private EnemyAttackRange _attackRange;
 
     private MeleeEnemyAttack _attack;
@@ -32,7 +33,7 @@ public class MeleeEnemyStateMachine : EnemyStateMachine
         base.InitBehaviours();
         _behavioursMap[typeof(MeleeEnemyBehaviourFlee)] = new MeleeEnemyBehaviourFlee(_flee, _playerTransform);
         _behavioursMap[typeof(MeleeEnemyBehaviourApproach)] = new MeleeEnemyBehaviourApproach(_approach, _playerTransform);
-        _behavioursMap[typeof(MeleeEnemyBehaviourAttack)] = new MeleeEnemyBehaviourAttack(_attack);
+        _behavioursMap[typeof(MeleeEnemyBehaviourAttack)] = new MeleeEnemyBehaviourAttack(_attack, _playerTransform);
         _behavioursMap[typeof(MeleeEnemyBehaviourIdle)] = new MeleeEnemyBehaviourIdle(_idle);
         _behavioursMap[typeof(MeleeEnemyBehaviourWalk)] = new MeleeEnemyBehaviourWalk(_walking);
     }
@@ -99,10 +100,12 @@ public class MeleeEnemyStateMachine : EnemyStateMachine
 
         _idle.OnEnded += SetRandomMoveBehaviour;
 
-        _attackRange.OnEntered += SetBehaviourAttack;
-        _attackRange.OnExited += TrySetBehaviourApproach;
+        _approach.OnApproached += SetBehaviourAttack;
+        _attack.OnLeft += TrySetBehaviourApproach;
 
         _attack.OnAttacked += TrySetBehaviourAttackAgain;
+
+        _attackRange.OnEntered += SetBehaviourAttack;
     }
 
     protected override void Unsubscribe()
@@ -112,9 +115,11 @@ public class MeleeEnemyStateMachine : EnemyStateMachine
 
         _idle.OnEnded -= SetRandomMoveBehaviour;
 
-        _attackRange.OnEntered -= SetBehaviourAttack;
-        _attackRange.OnExited -= TrySetBehaviourApproach;
+        _approach.OnApproached -= SetBehaviourAttack;
+        _attack.OnLeft -= TrySetBehaviourApproach;
 
         _attack.OnAttacked -= TrySetBehaviourAttackAgain;
+
+        _attackRange.OnEntered -= SetBehaviourAttack;
     }
 }

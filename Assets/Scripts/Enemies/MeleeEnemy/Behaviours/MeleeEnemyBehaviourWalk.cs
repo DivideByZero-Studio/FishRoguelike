@@ -14,7 +14,7 @@ public class MeleeEnemyBehaviourWalk : Behaviour
 
     public override void Exit()
     {
-        _walking.StartWalk();
+        _walking.StopWalk();
     }
 
     public override void Update()

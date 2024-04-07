@@ -13,6 +13,7 @@ public class EnemyIdle : MonoBehaviour
     private float _randomDuration;
 
     private Random _random;
+    private Coroutine _coroutine;
 
     private void Awake()
     {
@@ -22,17 +23,18 @@ public class EnemyIdle : MonoBehaviour
     public void StartIdle()
     {
         _randomDuration = (float) _random.NextDouble() * (_maxDuration - _minDuration) + _minDuration;
-        StartCoroutine(IdleRoutine());
+        _coroutine = StartCoroutine(IdleRoutine());
     }
 
     public void StopIdle()
     {
-        StopAllCoroutines();
+        StopCoroutine(_coroutine);
     }
 
     private IEnumerator IdleRoutine()
     {
         yield return new WaitForSeconds(_randomDuration);
+        Debug.Log("q");
         OnEnded?.Invoke();
     }
 }

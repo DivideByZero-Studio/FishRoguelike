@@ -16,11 +16,6 @@ public class MeleeEnemyBehaviourApproach : Behaviour
         _approach.StartApproach(_playerTransform);
     }
 
-    public override void Exit()
-    {
-        _approach.StopApproach();
-    }
-
     public override void Update()
     {
         _approach.Approach();
