@@ -3,7 +3,7 @@ using UnityEngine;
 
 public abstract class EnemyAttack : MonoBehaviour
 {
-    public event Action OnAttacked;
+    public event Action OnAttack;
     public event Action OnLeft;
 
     public static readonly float AttackRange = 1.5f;
@@ -12,9 +12,9 @@ public abstract class EnemyAttack : MonoBehaviour
 
     public abstract void StartAttack(Transform _playerTransform);
 
-    protected void InvokeOnAttacked()
+    protected void InvokeOnAttack()
     {
-        OnAttacked?.Invoke();
+        OnAttack?.Invoke();
     }
 
     protected void InvokeOnLeft()

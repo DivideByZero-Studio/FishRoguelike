@@ -120,7 +120,7 @@ public class MeleeEnemyStateMachine : EnemyStateMachine
         _approach.OnApproached += SetBehaviourAttack;
         _attack.OnLeft += TrySetBehaviourApproach;
 
-        _attack.OnAttacked += TrySetBehaviourAttackAgain;
+        _attack.OnAttack += TrySetBehaviourAttackAgain;
 
         _attackRange.OnEntered += SetBehaviourAttack;
 
@@ -137,7 +137,7 @@ public class MeleeEnemyStateMachine : EnemyStateMachine
         _approach.OnApproached -= SetBehaviourAttack;
         _attack.OnLeft -= TrySetBehaviourApproach;
 
-        _attack.OnAttacked -= TrySetBehaviourAttackAgain;
+        _attack.OnAttack -= TrySetBehaviourAttackAgain;
 
         _attackRange.OnEntered -= SetBehaviourAttack;
 
