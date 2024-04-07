@@ -53,12 +53,12 @@ public class MeleeEnemyAttack : EnemyAttack
     private IEnumerator AttackRoutine()
     {
         SetColliderRotation();
+        InvokeOnAttack();
         yield return new WaitForSeconds(_attackAnimationDuration / 2);
         _attackCollider.Enable();
         yield return new WaitForSeconds(_colliderLiveTime);
         _attackCollider.Disable();
         yield return new WaitForSeconds(_attackAnimationDuration / 2);
-        InvokeOnAttacked();
     }
 
     private void SetColliderRotation()

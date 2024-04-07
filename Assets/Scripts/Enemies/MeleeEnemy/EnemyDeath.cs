@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class EnemyDeath : MonoBehaviour
 {
-    private const float _timeToDeactivate = 2f;
+    [SerializeField] private float _timeToDeactivate;
 
     public void Dead()
     {
