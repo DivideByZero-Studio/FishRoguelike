@@ -12,6 +12,8 @@ public class ObjectPool : MonoBehaviour
     private List<GameObject> _disabledPool;
     private List<GameObject> _activePool;
 
+    public static readonly Vector3 DefaultPosition = new Vector3(0f, 0f, 0f);
+
     private void Awake()
     {
         if(Instance == null)
