@@ -135,8 +135,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: TerminalGreenVisuals
       objectReference: {fileID: 0}
-    - target: {fileID: 7916346482301776164, guid: dc91573cd30e4304aac0f15f953f9e8b, type: 3}
-      propertyPath: m_LocalScale.x
+    - target: {fileID: 3154227204075570388, guid: dc91573cd30e4304aac0f15f953f9e8b, type: 3}
+      propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7916346482301776164, guid: dc91573cd30e4304aac0f15f953f9e8b, type: 3}
@@ -179,11 +179,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 945881954079745049, guid: dc91573cd30e4304aac0f15f953f9e8b, type: 3}
+    - target: {fileID: 8842422782624297635, guid: dc91573cd30e4304aac0f15f953f9e8b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3154227204075570388, guid: dc91573cd30e4304aac0f15f953f9e8b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1863434377}
   m_SourcePrefab: {fileID: 100100000, guid: dc91573cd30e4304aac0f15f953f9e8b, type: 3}
 --- !u!4 &186734799 stripped
 Transform:
@@ -244,7 +250,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   normalTerminalVisuals: {fileID: 186734800}
   brokenTerminalVisuals: {fileID: 447852952}
-  health: 6
+  health: 3
+  interactableHint: {fileID: 1863434375}
 --- !u!61 &191808098
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3265,6 +3272,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1882143160}
     m_Modifications:
+    - target: {fileID: 2842784449014299913, guid: 7c9e7360c03fb6b45aa2e7306c49263d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4830322936136566444, guid: 7c9e7360c03fb6b45aa2e7306c49263d, type: 3}
       propertyPath: m_Name
       value: TerminalRedVisuals
@@ -3328,6 +3339,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4830322936136566444, guid: 7c9e7360c03fb6b45aa2e7306c49263d, type: 3}
   m_PrefabInstance: {fileID: 262867551}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &262867554 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4788117515007692364, guid: 7c9e7360c03fb6b45aa2e7306c49263d, type: 3}
+  m_PrefabInstance: {fileID: 262867551}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08b2a32c471809d4baf2645973b49c1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &272892794
 GameObject:
   m_ObjectHideFlags: 0
@@ -3447,7 +3469,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   normalTerminalVisuals: {fileID: 2019009594}
   brokenTerminalVisuals: {fileID: 1277281943}
-  health: 10
+  health: 7
+  interactableHint: {fileID: 2019009595}
 --- !u!61 &335714628
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5224,6 +5247,7 @@ MonoBehaviour:
   normalTerminalVisuals: {fileID: 2031302018}
   brokenTerminalVisuals: {fileID: 1975647578}
   health: 10
+  interactableHint: {fileID: 2031302019}
 --- !u!61 &1109478632
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5961,6 +5985,67 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
+--- !u!1 &1863434373 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3154227204075570388, guid: dc91573cd30e4304aac0f15f953f9e8b, type: 3}
+  m_PrefabInstance: {fileID: 186734798}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1863434375 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5676582863140566929, guid: dc91573cd30e4304aac0f15f953f9e8b, type: 3}
+  m_PrefabInstance: {fileID: 186734798}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1863434373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08b2a32c471809d4baf2645973b49c1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!61 &1863434377
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1863434373}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 1.3278606, y: -1.0117035}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 3.1498694, y: 5.299739}
+  m_EdgeRadius: 0
 --- !u!1 &1882143159
 GameObject:
   m_ObjectHideFlags: 0
@@ -6011,6 +6096,7 @@ MonoBehaviour:
   normalTerminalVisuals: {fileID: 262867553}
   brokenTerminalVisuals: {fileID: 1988447430}
   health: 0
+  interactableHint: {fileID: 262867554}
 --- !u!61 &1882143162
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6331,6 +6417,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TerminalGreenVisuals
       objectReference: {fileID: 0}
+    - target: {fileID: 3154227204075570388, guid: dc91573cd30e4304aac0f15f953f9e8b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7916346482301776164, guid: dc91573cd30e4304aac0f15f953f9e8b, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -6391,6 +6481,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2589098917097148983, guid: dc91573cd30e4304aac0f15f953f9e8b, type: 3}
   m_PrefabInstance: {fileID: 2019009592}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2019009595 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5676582863140566929, guid: dc91573cd30e4304aac0f15f953f9e8b, type: 3}
+  m_PrefabInstance: {fileID: 2019009592}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08b2a32c471809d4baf2645973b49c1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2031302016
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6399,13 +6500,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1109478630}
     m_Modifications:
+    - target: {fileID: 2842784449014299913, guid: 7c9e7360c03fb6b45aa2e7306c49263d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4830322936136566444, guid: 7c9e7360c03fb6b45aa2e7306c49263d, type: 3}
       propertyPath: m_Name
       value: TerminalRedVisuals
-      objectReference: {fileID: 0}
-    - target: {fileID: 4830322936136566444, guid: 7c9e7360c03fb6b45aa2e7306c49263d, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7555550387425334402, guid: 7c9e7360c03fb6b45aa2e7306c49263d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6447,8 +6548,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 6343458665727549767, guid: 7c9e7360c03fb6b45aa2e7306c49263d, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -6463,6 +6563,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4830322936136566444, guid: 7c9e7360c03fb6b45aa2e7306c49263d, type: 3}
   m_PrefabInstance: {fileID: 2031302016}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2031302019 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4788117515007692364, guid: 7c9e7360c03fb6b45aa2e7306c49263d, type: 3}
+  m_PrefabInstance: {fileID: 2031302016}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08b2a32c471809d4baf2645973b49c1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2403710729911801126
 PrefabInstance:
   m_ObjectHideFlags: 0
