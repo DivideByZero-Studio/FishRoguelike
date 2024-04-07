@@ -56,12 +56,12 @@ public abstract class StateMachine : MonoBehaviour
         return;
     }
 
-    private void OnEnable()
+    protected virtual void OnEnable()
     {
         Subscribe();
     }
 
-    private void OnDisable()
+    protected virtual void OnDisable()
     {
         Unsubscribe();
     }

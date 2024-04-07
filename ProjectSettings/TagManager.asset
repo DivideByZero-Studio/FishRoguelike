@@ -11,10 +11,10 @@ TagManager:
   - Confiner
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
+  - Obstacles
+  - Enemy
+  - Player
+  - Triggers
   - 
   - 
   - 

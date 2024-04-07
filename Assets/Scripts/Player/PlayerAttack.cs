@@ -6,8 +6,8 @@ using UnityEngine;
 public class PlayerAttack : MonoBehaviour
 {
     [Header("Attack Colliders")]
-    [SerializeField] private PlayerAttackCollider _primaryAttackCollider;
-    [SerializeField] private PlayerAttackCollider _secondaryAttackCollider;
+    [SerializeField] private AttackCollider _primaryAttackCollider;
+    [SerializeField] private AttackCollider _secondaryAttackCollider;
 
     [Header("Specs")]
     [SerializeField] private int _primaryAttackDamage;
@@ -85,7 +85,7 @@ public class PlayerAttack : MonoBehaviour
         damageable.TakeDamage(_secondaryAttackDamage);
     }
 
-    private IEnumerator AttackRoutine(PlayerAttackCollider attackCollider)
+    private IEnumerator AttackRoutine(AttackCollider attackCollider)
     {
         SetColliderRotation(attackCollider);
 
@@ -94,7 +94,7 @@ public class PlayerAttack : MonoBehaviour
         attackCollider.Disable();
     }
 
-    private void SetColliderRotation(PlayerAttackCollider attackCollider)
+    private void SetColliderRotation(AttackCollider attackCollider)
     {
         attackCollider.SetRotation(_playerMovement.LastMoveDirection);
     }

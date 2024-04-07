@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class PlayerAttackCollider : MonoBehaviour
+public class AttackCollider : MonoBehaviour
 {
     public event Action<IDamageable> DamageableEntered;
 
