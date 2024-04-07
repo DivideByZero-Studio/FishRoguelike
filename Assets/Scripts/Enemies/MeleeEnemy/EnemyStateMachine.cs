@@ -8,6 +8,11 @@ public abstract class EnemyStateMachine : StateMachine
     protected virtual void Awake()
     {
         _enemy = GetComponent<Enemy>();
+    }
+
+    public void Enable()
+    {
         _playerTransform = _enemy.GetPlayerTransform();
+        InitBehaviours();
     }
 }

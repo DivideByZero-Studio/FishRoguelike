@@ -10,7 +10,7 @@ public class SpawnTrigger : MonoBehaviour
     {
         if (collision.TryGetComponent<PlayerStateMachine>(out var playerSM))
         {
-            OnEntered?.Invoke(collision.transform);
+            OnEntered?.Invoke(collision.gameObject.GetComponent<Transform>());
             Destroy(gameObject);
         }
     }

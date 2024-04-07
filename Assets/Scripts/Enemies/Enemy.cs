@@ -2,7 +2,13 @@ using UnityEngine;
 
 public abstract class Enemy : MonoBehaviour, IPoolObject
 {
-    [SerializeField] protected Transform _playerTransform;
+    protected Transform _playerTransform;
+    protected EnemyStateMachine _ESM;
+
+    private void Awake()
+    {
+        _ESM = GetComponent<EnemyStateMachine>();
+    }
 
     public void Init(Vector3 position)
     {
@@ -12,6 +18,7 @@ public abstract class Enemy : MonoBehaviour, IPoolObject
     public void SetPlayerTransform(Transform playerTransform)
     {
         _playerTransform = playerTransform;
+        _ESM.Enable();
     }
 
     public Transform GetPlayerTransform()

@@ -55,8 +55,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16ebb343c6605694cab5be28ae58cf37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _approachChance: 0.4
-  _attackAgainChance: 0.8
+  _approachChance: 0.35
+  _attackAgainChance: 0.6
   _attackRange: {fileID: 6778702757733239711}
 --- !u!114 &4019872102302585349
 MonoBehaviour:
@@ -73,7 +73,7 @@ MonoBehaviour:
   _attackCollider: {fileID: 7773084844119306276}
   _damage: 1
   _cooldown: 2
-  _attackAnimationDuration: 0
+  _attackAnimationDuration: 1
 --- !u!114 &6950731846333959279
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -88,7 +88,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 3
   _duration: 0.4
-  _attackRange: {fileID: 0}
+  _attackRange: {fileID: 6778702757733239711}
 --- !u!114 &8593238289406785903
 MonoBehaviour:
   m_ObjectHideFlags: 0
