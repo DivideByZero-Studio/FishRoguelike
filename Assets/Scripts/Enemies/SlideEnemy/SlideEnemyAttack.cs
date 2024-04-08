@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class SlideEnemyAttack : EnemyAttack
 {
+    [SerializeField] private AttackCollider _attackCollider;
+    [SerializeField] private int _damage;
     [SerializeField] private float _speed;
     [SerializeField] private float _duration;
     [SerializeField] private float _cooldown;
@@ -57,9 +59,26 @@ public class SlideEnemyAttack : EnemyAttack
 
     private IEnumerator AttackRoutine()
     {
+        _attackCollider.Enable();
         SetDirection(_playerTransform.position);
         yield return new WaitForSeconds(_duration);
+        _attackCollider.Disable();
         _direction = Vector3.zero;
         InvokeOnAttack();
+    }
+
+    private void AttackGiveDamage(IDamageable damageable)
+    {
+        damageable.TakeDamage(_damage);
+    }
+
+    private void OnEnable()
+    {
+        _attackCollider.DamageableEntered += AttackGiveDamage;
+    }
+
+    private void OnDisable()
+    {
+        _attackCollider.DamageableEntered -= AttackGiveDamage;
     }
 }
