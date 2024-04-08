@@ -13,6 +13,11 @@ public abstract class EnemyAttack : MonoBehaviour
 
     public abstract void StartAttack(Transform _playerTransform);
 
+    protected virtual void StopAttack()
+    {
+
+    }
+
     protected void InvokeOnAttackStarted()
     {
         OnAttackStarted?.Invoke();
