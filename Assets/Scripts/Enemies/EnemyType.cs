@@ -10,6 +10,10 @@ public static class EnemyTypeExtensions
 
             case EnemyType.MeleeEnemy:
                 return typeof(MeleeEnemy);
+
+            case EnemyType.Captain:
+                return typeof(Captain);
+
             default:
                 return null;
         }
@@ -18,5 +22,6 @@ public static class EnemyTypeExtensions
 public enum EnemyType
 {
     MeleeEnemy,
-    SlideEnemy
+    SlideEnemy,
+    Captain
 }

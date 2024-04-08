@@ -16,8 +16,8 @@ TagManager:
   - Player
   - Triggers
   - Dead
-  - 
-  - 
+  - PlayerAttack
+  - EnemyAttack
   - 
   - 
   - 
