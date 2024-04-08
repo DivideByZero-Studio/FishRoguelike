@@ -447,7 +447,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 331181300628635131}
-  m_Layer: 7
+  m_Layer: 12
   m_Name: AttackColliderHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -481,7 +481,7 @@ GameObject:
   - component: {fileID: 1496046933579490646}
   - component: {fileID: 4776547537796851526}
   - component: {fileID: 7773084844119306276}
-  m_Layer: 7
+  m_Layer: 12
   m_Name: AttackCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -561,7 +561,7 @@ GameObject:
   m_Component:
   - component: {fileID: 479753866504755811}
   - component: {fileID: 7354001375521330434}
-  m_Layer: 7
+  m_Layer: 12
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}

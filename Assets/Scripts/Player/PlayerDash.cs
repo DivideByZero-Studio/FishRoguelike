@@ -13,6 +13,7 @@ public class PlayerDash : MonoBehaviour
     private PlayerController _characterController;
     private Rigidbody2D _rigidbody;
     private WaitForFixedUpdate _waitForFixedUpdate;
+    private Collider2D _collider;
 
     private Timer _timer;
 
@@ -20,6 +21,7 @@ public class PlayerDash : MonoBehaviour
 
     private void Awake()
     {
+        _collider = GetComponent<Collider2D>();
         _characterController = GetComponent<PlayerController>();
         _rigidbody = GetComponent<Rigidbody2D>();
 
@@ -42,6 +44,7 @@ public class PlayerDash : MonoBehaviour
         }
 
         _timer.Reset();
+        _collider.enabled = false;
         StartCoroutine(DashRoutine());
     }
 
@@ -56,7 +59,7 @@ public class PlayerDash : MonoBehaviour
             Move();
             yield return _waitForFixedUpdate;
         }
-
+        _collider.enabled = true;
         OnDashEnd?.Invoke();
     }
 

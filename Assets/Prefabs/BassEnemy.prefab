@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5165835720355394127}
   - component: {fileID: 8469756854256378848}
-  m_Layer: 7
+  m_Layer: 12
   m_Name: Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -532,7 +532,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 331181300628635131}
-  m_Layer: 7
+  m_Layer: 12
   m_Name: AttackColliderHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -566,7 +566,7 @@ GameObject:
   - component: {fileID: 1496046933579490646}
   - component: {fileID: 6541069939078171464}
   - component: {fileID: 7773084844119306276}
-  m_Layer: 7
+  m_Layer: 12
   m_Name: AttackCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}

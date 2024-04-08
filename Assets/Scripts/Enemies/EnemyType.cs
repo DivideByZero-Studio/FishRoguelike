@@ -9,12 +9,14 @@ public static class EnemyTypeExtensions
                 return typeof(SlideEnemy);
             case EnemyType.MeleeEnemy:
                 return typeof(MeleeEnemy);
-            case EnemyType.HammerheadShark:
+			case EnemyType.HammerheadShark:
                 return typeof(HammerheadShark);
             case EnemyType.WorkerEnemy:
                 return typeof(WorkerEnemy);
             case EnemyType.HarpoonWorker:
                 return typeof(HarpoonWorker);
+			case EnemyType.Captain:
+                return typeof(Captain);
             default:
                 return null;
         }
@@ -23,8 +25,10 @@ public static class EnemyTypeExtensions
 public enum EnemyType
 {
     MeleeEnemy,
+    SlideEnemy
     SlideEnemy,
     HammerheadShark,
     WorkerEnemy,
     HarpoonWorker,
+	Captain
 }

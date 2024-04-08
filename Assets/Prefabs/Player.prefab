@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6823358739229063073}
   - component: {fileID: 6952034960997392510}
   - component: {fileID: 8734741246894431067}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: PrimaryAttackCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -258,7 +258,7 @@ GameObject:
   - component: {fileID: 5662647862664600624}
   - component: {fileID: 3847097565488345889}
   - component: {fileID: 4604746903461272889}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: SecondaryAttackCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -336,7 +336,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 903970396179162935}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: AttackCollidersHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
