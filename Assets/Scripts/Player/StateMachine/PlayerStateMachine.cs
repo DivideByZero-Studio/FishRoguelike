@@ -9,6 +9,7 @@ public class PlayerStateMachine : StateMachine
     private PlayerMovement _movement;
     private PlayerAttack _attack;
     private PlayerDash _dash;
+    private Health _health;
 
     private void Awake()
     {
@@ -16,6 +17,7 @@ public class PlayerStateMachine : StateMachine
         _movement = GetComponent<PlayerMovement>();
         _attack = GetComponent<PlayerAttack>();
         _dash = GetComponent<PlayerDash>();
+        _health = GetComponent<Health>();
     }
 
     protected override void InitBehaviours()
@@ -23,6 +25,7 @@ public class PlayerStateMachine : StateMachine
         base.InitBehaviours();
         _behavioursMap[typeof(PlayerBehaviourActive)] = new PlayerBehaviourActive(_movement, _attack);
         _behavioursMap[typeof(PlayerBehaviourDash)] = new PlayerBehaviourDash(_dash);
+        _behavioursMap[typeof(PlayerBehaviourDead)] = new PlayerBehaviourDead(gameObject);
     }
 
     protected override void SetBehaviourByDefault()
@@ -33,13 +36,22 @@ public class PlayerStateMachine : StateMachine
 
     private void SetBehaviourDash()
     {
+        if (_currentBehaviour == GetBehaviour<PlayerBehaviourDead>()) return;
         var behaviour = GetBehaviour<PlayerBehaviourDash>();
         SetBehaviour(behaviour);
     }
 
     private void SetBehaviourActive()
     {
+        if (_currentBehaviour == GetBehaviour<PlayerBehaviourDead>()) return;
         var behaviour = GetBehaviour<PlayerBehaviourActive>();
+        SetBehaviour(behaviour);
+    }
+
+    private void SetBehaviourDead()
+    {
+        if (_currentBehaviour == GetBehaviour<PlayerBehaviourDead>()) return;
+        var behaviour = GetBehaviour<PlayerBehaviourDead>();
         SetBehaviour(behaviour);
     }
 
@@ -47,11 +59,13 @@ public class PlayerStateMachine : StateMachine
     {
         _characterController.OnDash += SetBehaviourDash;
         _dash.OnDashEnd += SetBehaviourActive;
+        _health.OnDead += SetBehaviourDead;
     }
 
     protected override void Unsubscribe()
     {
         _characterController.OnDash -= SetBehaviourDash;
         _dash.OnDashEnd -= SetBehaviourActive;
+        _health.OnDead -= SetBehaviourDead;
     }
 }
