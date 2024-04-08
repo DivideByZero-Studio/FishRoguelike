@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class EndLevelTrigger : MonoBehaviour
 {
+    [SerializeField] private string sceneToLoadName;
     private bool _isConditionsSatisfied;
 
     public void SatisfyConditions()
@@ -15,7 +16,7 @@ public class EndLevelTrigger : MonoBehaviour
 
         if (collision.TryGetComponent<PlayerVisuals>(out var playerVisuals))
         {
-            Debug.Log("level completed");
+            SceneLoader.LoadScene(sceneToLoadName);
         }
     }
 }
