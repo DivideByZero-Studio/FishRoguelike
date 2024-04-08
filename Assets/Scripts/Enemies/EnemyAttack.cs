@@ -3,6 +3,7 @@ using UnityEngine;
 
 public abstract class EnemyAttack : MonoBehaviour
 {
+    public event Action OnAttackStarted;
     public event Action OnAttack;
     public event Action OnLeft;
 
@@ -11,6 +12,11 @@ public abstract class EnemyAttack : MonoBehaviour
     public abstract void Attack();
 
     public abstract void StartAttack(Transform _playerTransform);
+
+    protected void InvokeOnAttackStarted()
+    {
+        OnAttackStarted?.Invoke();
+    }
 
     protected void InvokeOnAttack()
     {

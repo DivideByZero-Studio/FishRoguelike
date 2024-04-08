@@ -59,6 +59,7 @@ public class SlideEnemyAttack : EnemyAttack
 
     private IEnumerator AttackRoutine()
     {
+        InvokeOnAttackStarted();
         _attackCollider.Enable();
         SetDirection(_playerTransform.position);
         yield return new WaitForSeconds(_duration);
