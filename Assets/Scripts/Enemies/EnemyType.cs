@@ -25,7 +25,6 @@ public static class EnemyTypeExtensions
 public enum EnemyType
 {
     MeleeEnemy,
-    SlideEnemy
     SlideEnemy,
     HammerheadShark,
     WorkerEnemy,
