@@ -4,16 +4,34 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
+    public event Action OnDone;
     [SerializeField] private SpawnTrigger _trigger;
     [SerializeField] private List<SpawnPoint> _spawnPoints;
 
     private List<GameObject> _spawnedObjects;
     private Transform _playerTransform;
 
+    private bool _done = false;
+    private bool _spawned = false;
+
     private void Awake()
     {
         _spawnedObjects = new List<GameObject>();
     }
+
+    private void Update()
+    {
+        if (_done == false && _spawned)
+        {
+            foreach (var obj in _spawnedObjects)
+            {
+                if (obj.GetComponent<IPoolObject>().IsAlive == true) return;
+            }
+        }
+        _done = true;
+        OnDone?.Invoke();
+    }
+
 
     private GameObject Spawn(SpawnPoint spawnPoint)
     {
@@ -22,6 +40,7 @@ public class EnemySpawner : MonoBehaviour
         if (obj.TryGetComponent<IPoolObject>(out var poolObj))
         {
             poolObj.Init(spawnPoint.Position);
+            poolObj.IsAlive = true;
         }
 
         if (obj.TryGetComponent<Health>(out var healthObj))
@@ -43,6 +62,7 @@ public class EnemySpawner : MonoBehaviour
                 enemy.SetPlayerTransform(playerTransform);
             }
         }
+        _spawned = true;
     }
 
     private void OnEnable()

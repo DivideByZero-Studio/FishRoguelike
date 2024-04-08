@@ -4,7 +4,7 @@ using UnityEngine.Events;
 public class EndLevelTrigger : MonoBehaviour
 {
     [SerializeField] private string sceneToLoadName;
-    private bool _isConditionsSatisfied;
+    [SerializeField] private bool _isConditionsSatisfied;
 
     [SerializeField] private UnityEvent OnLevelEnd;
 

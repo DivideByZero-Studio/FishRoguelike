@@ -5,6 +5,8 @@ public abstract class Enemy : MonoBehaviour, IPoolObject
     protected Transform _playerTransform;
     protected EnemyStateMachine _ESM;
 
+    public bool IsAlive { get; set; }
+
     private void Awake()
     {
         _ESM = GetComponent<EnemyStateMachine>();

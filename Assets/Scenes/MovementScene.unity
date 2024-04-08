@@ -177,7 +177,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5357954423174798836, guid: 37725d872d2322f4a807288d5f5e308e, type: 3}
       propertyPath: _enemyType
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -819,7 +819,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5357954423174798836, guid: 37725d872d2322f4a807288d5f5e308e, type: 3}
       propertyPath: _enemyType
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -10396,6 +10396,10 @@ PrefabInstance:
       propertyPath: _playerHealth
       value: 
       objectReference: {fileID: 1332523683}
+    - target: {fileID: 2967455525368022261, guid: db8e0c40a3901bd499643b135a4ef9fe, type: 3}
+      propertyPath: _maxHealth
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4569397630637260954, guid: db8e0c40a3901bd499643b135a4ef9fe, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
