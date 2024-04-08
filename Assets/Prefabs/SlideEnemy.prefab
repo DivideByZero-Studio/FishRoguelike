@@ -12,16 +12,16 @@ GameObject:
   - component: {fileID: 1161156207469916316}
   - component: {fileID: 1243468327927750755}
   - component: {fileID: 2958555218719797466}
-  - component: {fileID: 4714945691940599707}
+  - component: {fileID: 4708347369453512243}
   - component: {fileID: 3729833641703894118}
-  - component: {fileID: 4019872102302585349}
   - component: {fileID: 6950731846333959279}
   - component: {fileID: 8593238289406785903}
+  - component: {fileID: 7137653744545051645}
   - component: {fileID: 4186296054394738583}
   - component: {fileID: 1954752693434804080}
   - component: {fileID: 7991429830352106023}
   m_Layer: 7
-  m_Name: MeleeEnemy 1
+  m_Name: SlideEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -53,11 +53,11 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1903658436690144494}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 0.0001
   m_LinearDrag: 0
   m_AngularDrag: 0
   m_GravityScale: 0
@@ -68,7 +68,7 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
@@ -120,7 +120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHealth: 1
---- !u!114 &4714945691940599707
+--- !u!114 &4708347369453512243
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -129,7 +129,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1903658436690144494}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46f897adf2680f2479245fbda39a2296, type: 3}
+  m_Script: {fileID: 11500000, guid: e8483868f6c3ea9479bff55adc1190cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &3729833641703894118
@@ -144,25 +144,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16ebb343c6605694cab5be28ae58cf37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _approachChance: 0.35
-  _attackAgainChance: 0.6
+  _approachChance: 0.7
+  _attackAgainChance: 0
   _attackRange: {fileID: 6778702757733239711}
---- !u!114 &4019872102302585349
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1903658436690144494}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c11254be830b664c922fa78ea766988, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _attackCollider: {fileID: 7773084844119306276}
-  _damage: 1
-  _cooldown: 2
-  _attackAnimationDuration: 1
 --- !u!114 &6950731846333959279
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -175,8 +159,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb2f0c4b37a6f5a47ace4a0f54bf4e57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 3
-  _duration: 0.4
+  _speed: 0
+  _duration: 0.1
   _attackRange: {fileID: 6778702757733239711}
 --- !u!114 &8593238289406785903
 MonoBehaviour:
@@ -190,7 +174,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0d5133b99f51244eb7f18177ce3bd8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 2
+  _speed: 1
+--- !u!114 &7137653744545051645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1903658436690144494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cf56bc87296e1e428b4fa3bb433865a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _attackRange: 2.5
+  _speed: 4
+  _duration: 1
+  _cooldown: 2
 --- !u!114 &4186296054394738583
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -235,6 +235,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2983bac83de0814f8185fe427f7838f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _timeToDeactivate: 2
 --- !u!1 &2974455199928321706
 GameObject:
   m_ObjectHideFlags: 0
@@ -346,7 +347,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 1
+  m_Radius: 2.5
 --- !u!1 &5661341674282034346
 GameObject:
   m_ObjectHideFlags: 0

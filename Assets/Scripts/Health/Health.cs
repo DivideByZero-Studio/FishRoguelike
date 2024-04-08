@@ -22,6 +22,9 @@ public class Health : MonoBehaviour, IDamageable
 
     public void TakeDamage(int value)
     {
+        if (_health == 0)
+            return;
+
         if (value <= 0) 
             return;
 

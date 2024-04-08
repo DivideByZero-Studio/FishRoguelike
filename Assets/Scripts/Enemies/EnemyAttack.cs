@@ -6,7 +6,7 @@ public abstract class EnemyAttack : MonoBehaviour
     public event Action OnAttack;
     public event Action OnLeft;
 
-    public static readonly float AttackRange = 1.5f;
+    [SerializeField] protected float _attackRange;
 
     public abstract void Attack();
 
@@ -20,5 +20,10 @@ public abstract class EnemyAttack : MonoBehaviour
     protected void InvokeOnLeft()
     {
         OnLeft?.Invoke();
+    }
+
+    public float GetAttackRange()
+    {
+        return _attackRange;
     }
 }

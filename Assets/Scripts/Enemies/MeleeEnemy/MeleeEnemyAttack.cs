@@ -44,7 +44,7 @@ public class MeleeEnemyAttack : EnemyAttack
             _attackTimer.Reset();
         }
 
-        if ((_transform.position - _playerTransform.position).magnitude > AttackRange)
+        if ((_transform.position - _playerTransform.position).magnitude > _attackRange)
         {
             InvokeOnLeft();
         } 

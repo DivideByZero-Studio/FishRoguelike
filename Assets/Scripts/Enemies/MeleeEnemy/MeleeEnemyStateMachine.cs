@@ -20,7 +20,7 @@ public class MeleeEnemyStateMachine : EnemyStateMachine
     protected override void Awake()
     {
         base.Awake();
-        _attack = GetComponent<MeleeEnemyAttack>();
+        _attack = GetComponent<EnemyAttack>();
         _flee = GetComponent<EnemyFlee>();
         _approach = GetComponent<MeleeEnemyApproach>();
         _idle = GetComponent<EnemyIdle>();
@@ -118,8 +118,8 @@ public class MeleeEnemyStateMachine : EnemyStateMachine
         _idle.OnEnded += SetRandomMoveBehaviour;
 
         _approach.OnApproached += SetBehaviourAttack;
-        _attack.OnLeft += TrySetBehaviourApproach;
 
+        _attack.OnLeft += TrySetBehaviourApproach;
         _attack.OnAttack += TrySetBehaviourAttackAgain;
 
         _attackRange.OnEntered += SetBehaviourAttack;
@@ -135,8 +135,8 @@ public class MeleeEnemyStateMachine : EnemyStateMachine
         _idle.OnEnded -= SetRandomMoveBehaviour;
 
         _approach.OnApproached -= SetBehaviourAttack;
-        _attack.OnLeft -= TrySetBehaviourApproach;
 
+        _attack.OnLeft -= TrySetBehaviourApproach;
         _attack.OnAttack -= TrySetBehaviourAttackAgain;
 
         _attackRange.OnEntered -= SetBehaviourAttack;

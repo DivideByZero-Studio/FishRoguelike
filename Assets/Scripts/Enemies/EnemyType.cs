@@ -5,8 +5,8 @@ public static class EnemyTypeExtensions
     {
         switch (type)
         {
-            case EnemyType.EnemyTest:
-                return typeof(EnemyTest);
+            case EnemyType.SlideEnemy:
+                return typeof(SlideEnemy);
 
             case EnemyType.MeleeEnemy:
                 return typeof(MeleeEnemy);
@@ -17,6 +17,6 @@ public static class EnemyTypeExtensions
 }
 public enum EnemyType
 {
-    EnemyTest,
-    MeleeEnemy
+    MeleeEnemy,
+    SlideEnemy
 }

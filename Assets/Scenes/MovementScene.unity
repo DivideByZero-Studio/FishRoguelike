@@ -698,7 +698,7 @@ PrefabInstance:
       objectReference: {fileID: 1997606853}
     - target: {fileID: 3909979990090861039, guid: 09d1e287a7fdc1849848127eea99963f, type: 3}
       propertyPath: _spawnPoints.Array.size
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3909979990090861039, guid: 09d1e287a7fdc1849848127eea99963f, type: 3}
       propertyPath: _spawnPoints.Array.data[0]
@@ -1087,12 +1087,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8591841596573238079, guid: 589a9c487f6e618418b0906609e2a465, type: 3}
       propertyPath: _objectPrefabs.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8591841596573238079, guid: 589a9c487f6e618418b0906609e2a465, type: 3}
       propertyPath: _objectPrefabs.Array.data[0]
       value: 
       objectReference: {fileID: 1903658436690144494, guid: 2e2a8405507a7a64f94cb7b6992aeaa5, type: 3}
+    - target: {fileID: 8591841596573238079, guid: 589a9c487f6e618418b0906609e2a465, type: 3}
+      propertyPath: _objectPrefabs.Array.data[1]
+      value: 
+      objectReference: {fileID: 1903658436690144494, guid: c40e3628e7aabd34e9105de5dd8a783e, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
