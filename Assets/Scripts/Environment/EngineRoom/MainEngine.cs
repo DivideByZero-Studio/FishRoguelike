@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -8,7 +9,8 @@ public class MainEngine : MonoBehaviour
     [SerializeField] private Color[] stateColors;
     [SerializeField] private float[] animationSpeedMultiplier;
 
-    [SerializeField] private UnityEvent OnExtremeEngineCondition; 
+    [SerializeField] private UnityEvent OnExtremeEngineCondition;
+    [SerializeField] private AudioClip explosionSound;
 
     private Animator _animator;
     private SpriteRenderer _spriteRenderer;
@@ -27,6 +29,16 @@ public class MainEngine : MonoBehaviour
     private void OnDisable()
     {
         mainTerminal.StabilizerBroken -= SetEngineIntensity;
+    }
+
+    public void PlayExplosionSound()
+    {
+        AudioManager.Instance.PlaySFX(explosionSound);
+    }
+
+    private IEnumerator SoundRoutine()
+    {
+        yield return new WaitForSeconds(0.7f);
     }
 
     private void SetEngineIntensity(StabilizersState stabilizersState)

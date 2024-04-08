@@ -58,7 +58,9 @@ public class VolumeSlidersController : MonoBehaviour
 
     private void SetMusicVolume(float volume)
     {
-        float volumeValue = CalculateVolumeValue(volume);
+        var volumeValue = Mathf.Lerp(minSliderValue, -25, volume);
+        if (volumeValue < minSliderValue + 5f) volumeValue = -80f;
+
         mixer.SetFloat("MusicVolume", volumeValue);
         PlayerPrefs.SetFloat("MusicVolume", volumeValue);
         PlayerPrefs.Save();

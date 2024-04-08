@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 
@@ -7,6 +8,12 @@ public class PlayerVisuals : MonoBehaviour
     [SerializeField] private PlayerAttack _playerAttack;
     [SerializeField] private PlayerMovement _playerMovement;
     [SerializeField] private Health _playerHealth;
+
+    [Header("Sounds")]
+    [SerializeField] private AudioClip jabSound;
+    [SerializeField] private AudioClip kickSound;
+    [SerializeField] private AudioClip deathSound;
+    [SerializeField] private GameObject stepSound;
 
     private Animator _animator;
 
@@ -49,10 +56,12 @@ public class PlayerVisuals : MonoBehaviour
         var position = transform.position;
         if (_lastPosition == position)
         {
+            stepSound.SetActive(false);
             _animator.SetBool(isMoving, false);
         }
         else
         {
+            stepSound.SetActive(true);
             _animator.SetBool(isMoving, true);
         }
         _lastPosition = position;
@@ -68,16 +77,20 @@ public class PlayerVisuals : MonoBehaviour
 
     private void PlayJabAnimation()
     {
+        AudioManager.Instance.PlaySFX(jabSound);
         _animator.SetTrigger(Jab);
     }
 
     private void PlayKickAnimation()
     {
+        AudioManager.Instance.PlaySFX(kickSound);
         _animator.SetTrigger(Kick);
     }
 
     private void PlayDeathAnimation()
     {
+        SceneLoader.ReloadScene();
+        AudioManager.Instance.PlaySFX(deathSound);
         _animator.SetTrigger(Death);
     }
 }

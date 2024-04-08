@@ -1,9 +1,12 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class EndLevelTrigger : MonoBehaviour
 {
     [SerializeField] private string sceneToLoadName;
     private bool _isConditionsSatisfied;
+
+    [SerializeField] private UnityEvent OnLevelEnd;
 
     public void SatisfyConditions()
     {
@@ -16,6 +19,7 @@ public class EndLevelTrigger : MonoBehaviour
 
         if (collision.TryGetComponent<PlayerVisuals>(out var playerVisuals))
         {
+            OnLevelEnd?.Invoke();
             SceneLoader.LoadScene(sceneToLoadName);
         }
     }
