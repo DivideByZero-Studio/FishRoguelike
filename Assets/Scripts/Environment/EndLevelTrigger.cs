@@ -3,7 +3,7 @@ using UnityEngine;
 public class EndLevelTrigger : MonoBehaviour
 {
     [SerializeField] private string sceneToLoadName;
-    private bool _isConditionsSatisfied;
+    [SerializeField] private bool _isConditionsSatisfied;
 
     public void SatisfyConditions()
     {

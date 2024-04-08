@@ -478,14 +478,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5357954423174798836, guid: 37725d872d2322f4a807288d5f5e308e, type: 3}
       propertyPath: _enemyType
-      value: 2
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 37725d872d2322f4a807288d5f5e308e, type: 3}
---- !u!1001 &2040862067
+--- !u!1001 &1597933104
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -495,11 +495,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4569397630637260954, guid: db8e0c40a3901bd499643b135a4ef9fe, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.5158718
+      value: -1.9627659
       objectReference: {fileID: 0}
     - target: {fileID: 4569397630637260954, guid: db8e0c40a3901bd499643b135a4ef9fe, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.2172535
+      value: -0.3645978
       objectReference: {fileID: 0}
     - target: {fileID: 4569397630637260954, guid: db8e0c40a3901bd499643b135a4ef9fe, type: 3}
       propertyPath: m_LocalPosition.z
@@ -620,4 +620,4 @@ SceneRoots:
   - {fileID: 1301999208}
   - {fileID: 722002506}
   - {fileID: 1427869275}
-  - {fileID: 2040862067}
+  - {fileID: 1597933104}

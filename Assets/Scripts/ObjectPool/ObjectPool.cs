@@ -90,6 +90,7 @@ public class ObjectPool : MonoBehaviour
             _disabledPool.Add(obj);
             _activePool.Remove(obj);
             obj.SetActive(false);
+            obj.GetComponent<IPoolObject>().IsAlive = false;
             return true;
         }
         return false;
@@ -115,6 +116,7 @@ public class ObjectPool : MonoBehaviour
             _activePool.Add(obj);
             _disabledPool.Remove(obj);
             obj.SetActive(true);
+            obj.GetComponent<IPoolObject>().IsAlive = true;
             return true;
         }
         return false;
