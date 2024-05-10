@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float _movementSpeed;
 
     public Vector2 LastMoveDirection { get; private set; }
+    public float LastHorizontalDirection { get; private set; }
     private Vector2 _moveDirection;
 
     private Rigidbody2D _rigidbody;
@@ -23,7 +24,13 @@ public class PlayerMovement : MonoBehaviour
     {
         _moveDirection = gameInput.GetMovementNormalizedVector();
         if (_moveDirection != Vector2.zero)
+        {
             LastMoveDirection = _moveDirection;
+            if (_moveDirection.x != 0)
+            {
+               LastHorizontalDirection = _moveDirection.x;
+            }
+        }
     }
 
     private void FixedUpdate()

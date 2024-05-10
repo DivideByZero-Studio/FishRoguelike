@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
@@ -18,6 +16,8 @@ public class PlayerVisuals : MonoBehaviour
     private Animator _animator;
 
     private Vector3 _lastPosition;
+    private Vector3 _rightLocalScale = new(1, 1, 1);
+    private Vector3 _leftLocalScale = new(-1, 1, 1);
 
     private const string movementHorizontal = nameof(movementHorizontal);
     private const string movementVertical = nameof(movementVertical);
@@ -68,11 +68,18 @@ public class PlayerVisuals : MonoBehaviour
     }
 
     private void SetMovementDirection()
-    {
-        var direction = _playerMovement.LastMoveDirection;
-
-        _animator.SetFloat(movementHorizontal, direction.x);
-        _animator.SetFloat(movementVertical, direction.y);
+    {  
+        if (_playerMovement.LastHorizontalDirection >= 0)
+        {
+            transform.localScale = _rightLocalScale;
+        }
+        else
+        {
+            transform.localScale = _leftLocalScale;
+        }
+        
+        /*_animator.SetFloat(movementHorizontal, direction.x);
+        _animator.SetFloat(movementVertical, direction.y);*/
     }
 
     private void PlayJabAnimation()
@@ -89,7 +96,6 @@ public class PlayerVisuals : MonoBehaviour
 
     private void PlayDeathAnimation()
     {
-        SceneLoader.ReloadScene();
         AudioManager.Instance.PlaySFX(deathSound);
         _animator.SetTrigger(Death);
     }
